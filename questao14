@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+void funcao(int *vetor, int v){
+    int i, maior=0, menor=0;
+    int *min=&menor, *max=&maior;
+    vetor[0];
+    for(int i=0;i<v;i++){
+        printf("\nDigite o valor %d: " , i+1);
+        scanf("%d" , &vetor[i]);
+    }
+    for(int i=0;i<v;i++){
+        if(vetor[i]>=maior){
+            maior=vetor[i];
+        }
+    }
+    for(int i=0;i<v;i++){
+        if(vetor[i]<=vetor[i-1]){
+            menor=vetor[i];
+        }
+    }
+    printf("\nMenor valor: %d" , *min);
+    printf("\nMaior valor: %d" , *max);
+}
+int main()
+{
+    int i, v;
+        printf("Digite a quantidade de numeros do vetor: ");
+        scanf("%d" , &v);
+    int vetor[v];
+        funcao(vetor,v);
+return 0;
+}
