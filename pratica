@@ -1,89 +1,88 @@
-int a, b, c, d, x;
-int i, j;
-void multiplicacao(int *p1[a][b], int *p2[c][d], int *p3[a][d]){
-    if(b==c){
+#include <stdio.h>
+#include <stdlib.h>
+int **alocaMatriz (int linha, int coluna){
+    int **matriz, i;
+    matriz=(int**)malloc(linha * sizeof(int*));
+    for(i=0;i<linha;i++){
+        matriz[i]=(int**)malloc(coluna * sizeof(int *));
+    }
+    return matriz;
+}
+
+int **mult(int **m1, int **m2, int a, int b, int c, int d){
+   int i, j, k, l, **m3, aux=0;
+   m3=alocaMatriz(a,d);
+   **m3=0;
+   if(b==c){
         for(i=0;i<a;i++){
             for(j=0;j<d;j++){
-                for(x=0;x<b;x++){
-                    *p3[i][j]= (*p1[i][x]) * (*p2[x][j]);
-                    }
+                for(k=0;k<b;k++){
+                    aux=(**m3)+(**m1)*(**m2);
                 }
+                aux=**m3;
             }
         }
-        else{
-            printf("Nao eh possivel multiplicar essas matrizes");
-        }
+        printf("%d " , **m3);
+   }
+   else{
+       printf("\nNao eh possivel multiplicar as matrizes");
+       exit(1);
+   }
 }
 int main()
 {
-    int *p1[a][b], *p2[c][d], *p3[a][d];
-        printf("\nDigite a quantidade de linhas da matriz 1: ");
-        scanf("%d" , &a);
-        printf("\nDigite a quantidade de colunas da matriz 1: ");
-        scanf("%d" , &b);
-        printf("\nDigite a quantidade de linhas da matriz 2: ");
-        scanf("%d" , &c);
-        printf("\nDigite a quantidade de colunas da matriz 2: ");
-        scanf("%d" , &d);
+    int a, b, c, d;
+    int i, j;
+    int **m1[a][b], **m2[c][d], **m3[a][d];
+    printf("Digite a quantidade de linhas da matriz 1: ");
+    scanf("%d" , &a);
+    printf("Digite a quantidade de colunas da matriz 1: ");
+    scanf("%d" , &b);
+    printf("Digite a quantidade de linhas da matriz 2: ");
+    scanf("%d" , &c);
+    printf("Digite a quantidade de colunas da matriz 2: ");
+    scanf("%d" , &d);
 
-        printf("\nMATRIZ 1");
-        for(i=0;i<a;i++){
-            for(j=0;j<b;j++){
-                printf("\nDigite o valor %d %d: " , i+1, j+1);
-                scanf("%d" , &p1[i][j]);
-            }
+    alocaMatriz(a,b);
+
+    for(i=0;i<a;i++){
+        for(j=0;j<b;j++){
+           printf("\nDigite o valor %d %d da matriz 1: " , i+1 , j+1);
+           scanf("%d" , &m1[i][j]);
         }
+    }
 
-        p1[a][b]=(int*)malloc(sizeof(int));
-            if(p1[a][b]==NULL){
-                printf("Memoria insuficiente");
-                exit(1);
-            }
+    alocaMatriz(c,d);
 
-        printf("\nMATRIZ 2");
-        for(i=0;i<c;i++){
-            for(j=0;j<d;j++){
-                printf("\nDigite o valor %d %d: " , i+1, j+1);
-                scanf("%d" , &p2[i][j]);
-            }
+    for(i=0;i<c;i++){
+        for(j=0;j<d;j++){
+            printf("\nDigite o valor %d %d da matriz 2: " , i+1 , j+1);
+            scanf("%d" , &m2[i][j]);
         }
+    }
 
-        p2[c][d]=(int*)malloc(sizeof(int));
-            if(p2[c][d]==NULL){
-                printf("Memoria insuficiente");
-                exit(1);
-            }
-        multiplicacao(*p1[a][b], *p2[c][d], *p3[a][d]);
+    printf("\n---Matriz 1---");
+    printf("\n");
+    for(i=0;i<a;i++){
+        for(j=0;j<b;j++){
+            printf("%d " , m1[i][j]);
+        }
+    }
+    printf("\n");
+    printf("\n---Matriz 2---");
+    printf("\n");
+    for(i=0;i<c;i++){
+        for(j=0;j<d;j++){
+            printf("%d " , m2[i][j]);
+        }
+    }
+    printf("\n---Matriz 3---");
+    printf("\n");
+    mult(**m1, **m2, a, b, c, d);
 
-        p3[a][d]=(int*)malloc(sizeof(int));
-            if(p3[a][d]==NULL){
-                printf("Memoria insuficiente");
-                exit(1);
-            }
-
-        printf("---MATRIZ 1---\n");
-        for(i=0;i<a;i++){
-            for(j=0;j<b;j++){
-            printf("%d " , *p1[a][b]);
-            }
-        }
-        printf("\n");
-        printf("---MATRIZ 2---\n");
-        for(i=0;i<c;i++){
-            for(j=0;j<d;j++){
-            printf("%d " , *p2[c][d]);
-            }
-        }
-        printf("\n");
-        printf("---MATRIZ 3---\n");
-        for(i=0;i<a;i++){
-            for(j=0;j<d;j++){
-            printf("%d " , *p3[a][d]);
-            }
-        }
-        printf("\n");
-free(p1);
-free(p2);
-free(p3);
-return 0;
+free(**m1);
+free(**m2);
+free(**m3);
+    return 0;
 }
+
