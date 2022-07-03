@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+int criaMatriz(int linha, int coluna, int numMatriz){
+int i, j, **matriz[linha][coluna];
+    for(i=0;i<linha;i++){
+        for(j=0;j<coluna;j++){
+            printf("\nDigite o valor %d %d da matriz %d: " , i+1, j+1, numMatriz);
+            scanf("%d" , &matriz[i][j]);
+        }
+    }
+    return **matriz;
+}
+
+void imprimeMatriz(int linha, int coluna, int **matriz[linha][coluna]){
+int i, j;
+    for(i=0;i<linha;i++){
+        for(j=0;j<coluna;j++){
+            printf("%d" , **matriz[i][j]);
+        }
+    }
+}
+
+void multiplica(int a, int b, int c, int d, int **m1, int **m2){
+int **m3, i, j, k;
+    if(b==c){
+    printf("---MATRIZ 3---\n");
+    for(i=0;i<a;i++){
+        for(j=0;j<d;j++){
+            m3[i][j]=0;
+            for(k=0;k<b;k++){
+                m3[i][j]= m3[i][j] + (m1[b][k]) * (m2[k][b]);
+            }
+            printf("%d " , m3[i][j]);
+        }
+        }
+    }
+    else{
+        printf("Nao eh possivel multiplicar as matrizes");
+        exit(1);
+    }
+}
+int main()
+{
+    int a, b, c, d, i, j, numMatriz, numMatriz2;
+    int **m1, **m2, **m3;
+
+    printf("Digite a quant. de linhas da matriz 1: ");
+    scanf("%d" , &a);
+    printf("\nDigite a quant. de colunas da matriz 1: ");
+    scanf("%d" , &b);
+    printf("\nDigite a quant. de linhas da matriz 2: ");
+    scanf("%d" , &c);
+    printf("\nDigite a quant. de colunas da matriz 2: ");
+    scanf("%d" , &d);
+
+    printf("\nDigite o numero da matriz (1 ou 2): ");
+    scanf("%d" , &numMatriz);
+
+    m1=criaMatriz(a, b, numMatriz);
+
+    printf("\nDigite o numero da matriz (1 ou 2): ");
+    scanf("%d" , &numMatriz2);
+
+    m2=criaMatriz(c, d, numMatriz2);
+
+    printf("---MATRIZ 1---");
+    imprimeMatriz(a, b, m1);
+    printf("---MATRIZ 2---");
+    imprimeMatriz(c, d, m2);
+    multiplica(a, b, c, d, m1, m2);
+
+    return 0;
+}
