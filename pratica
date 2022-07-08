@@ -1,94 +1,111 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-int mult(int **m1, int **m2, int **m3, int a, int b, int c, int d){
+int **mult(int a, int b, int d, int **m1, int **m2, int **m3){
 int i, j, k;
-        m3 = (int**)malloc(a*sizeof(int*));
-            for(i=0; i<a; i++){
-            m3[i] = (int*)malloc(d*sizeof(int));
-            }
-        for(i=0; i<a; i++){
-            for(j = 0; j<d; j++){
-                for(k=0; k<b; k++){
-                    m3[i][j] += m1[i][k] * m2[k][j];
-                }
-            }
-        }
-    return m3;
-}
-int main()
-{
-    int a, b, c, d;
-    int i, j;
-    int **m1, **m2, **m3;
-
-        printf("Digite a quantidade de linhas da matriz 1: ");
-        scanf("%d" , &a);
-        printf("\nDigite a quantidade de colunas da matriz 1: ");
-        scanf("%d" , &b);
-        printf("\nDigite a quantidade de linhas da matriz 2: ");
-        scanf("%d" , &c);
-        printf("\nDigite a quantidade de colunas da matriz 2: ");
-        scanf("%d" , &d);
-
-        if(b!=c){
-            printf("Nao eh possivel multiplicar as matrizes");
+    m3 = (int**) calloc (a, sizeof(int*));
+        if(m3==NULL){
+            printf("Memoria insuficiente!");
             exit(1);
         }
-        else{
-        m1=(int**)malloc(a*sizeof(int*));
-            for(i=0;i<a;i++){
-            m1[i]=(int*)malloc(b*sizeof(int));
-                for(j=0;j<b;j++){
-                    printf("\nDigite o valor %d %d da matriz 1: " , i+1, j+1);
-                    scanf("%d" , &m1[i][j]);
-                }
-                if(m1[i]==NULL){
-                printf("Memoria insuficiente!");
-                exit(1);
-                }
-            }
-
-        m2=(int**)malloc(c*sizeof(int*));
-            for(i=0;i<c;i++){
-            m2[i]=(int*)malloc(d*sizeof(int));
-                for(j=0;j<d;j++){
-                    printf("\nDigite o valor %d %d da matriz 2: " , i+1, j+1);
-                    scanf("%d" , &m2[i][j]);
-                }
-                if(m2[i]==NULL){
-                printf("Memoria insuficiente!");
-                exit(1);
-                }
-            }
-
-        printf("---MATRIZ 1---");
-        printf("\n");
-        for(i=0;i<a;i++){
-            for(j=0;j<b;j++){
-                printf("\t%d " , m1[i][j]);
-            }
+    for(i=0;i<a;i++){
+        m3[i] = (int*) calloc (d, sizeof(int));
+            if(m3[i]==NULL){
+            printf("Memoria insuficiente!");
+            exit(1);
         }
-        printf("\n");
-        printf("---MATRIZ 2---");
-        printf("\n");
-        for(i=0;i<c;i++){
-            for(j=0;j<d;j++){
-                printf("\t%d " , m2[i][j]);
-            }
-        }
-        printf("\n");
-        printf("---MATRIZ 3---");
-        printf("\n");
-        m3 = mult(m1, m2, m3, a, b, c, d);
+    }
         for(i=0;i<a;i++){
             for(j=0;j<d;j++){
-                printf("\t%d" , m3[i][j]);
+                for(k=0;k<b;k++){
+                m3[i][j] += m1[i][k] * m2[k][j];
+                }
+            }
+        }
+        return m3;
+}
+
+int main(){
+    int a,b,c,d, i, j;
+    int **m1;
+    int **m2;
+    int **m3;
+
+    printf("\nDigite o numero de linhas da matriz 1: ");
+    scanf("%d", &a);
+    printf("\nDigite o numero de colunas da matriz 1: ");
+    scanf("%d", &b);
+    printf("\nDigite o numero de linhas da matriz 2: ");
+    scanf("%d", &c);
+    printf("\nDigite o numero de colunas da matriz 2: ");
+    scanf("%d", &d);
+
+    if(b!=c){
+        printf("Nao eh possivel realizar a multiplicacao");
+        exit(1);
+    }
+    else{
+    m1 = (int**)malloc(a * sizeof (int*));
+        if(m1==NULL){
+            printf("Memoria insuficiente!");
+            exit(1);
+        }
+    for(i=0;i<a;i++){
+        m1[i] = (int*)malloc(b * sizeof (int));
+            if(m1[i]==NULL){
+            printf("Memoria insuficiente!");
+            exit(1);
+        }
+        for(j=0;j <b;j++)
+        {
+            printf("\nDigite o valor [%d][%d] da primeira matriz: ", i+1, j+1);
+            scanf("%d", &m1[i][j]);
+        }
+    }
+    printf("\n\t Matriz 1");
+    for(i=0;i<a;i++){
+        printf("\n");
+        for(j=0;j<b;j++){
+            printf("\t%d", m1[i][j]);
+        }
+    }
+    m2 = (int**)malloc(c * sizeof (int*));
+        if(m2==NULL){
+            printf("Memoria insuficiente!");
+            exit(1);
+        }
+    printf("\n\n");
+    for(i=0;i<c;i++){
+        m2[i] = (int*)malloc(d * sizeof (int));
+            if(m2[i]==NULL){
+            printf("Memoria insuficiente!");
+            exit(1);
+            }
+        for(j=0;j<d;j++)
+        {
+            printf("\nDigite o valor [%d][%d] da  segunda matriz: ", i+1, j+1);
+            scanf("%d", &m2[i][j]);
+
+        }
+    }
+    printf("\n\t Matriz 2");
+    for(i=0;i<c;i++){
+        printf("\n");
+        for(j=0;j<d;j++){
+            printf("\t%d", m2[i][j]);
+        }
+    }
+    printf("\n\n");
+    printf("\n\t Matriz 3");
+
+  m3 = mult(a, b, d,  m1, m2, m3);
+    for(i=0;i<a;i++)
+    {
+       printf("\n\n");
+        for(j=0;j<d;j++)
+        {
+        printf("\t%d", m3[i][j]);
             }
         }
     }
-free(**m1);
-free(**m2);
-free(**m3);
-return 0;
+    return 0;
 }
