@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+/******
+Faça um programa que leia dois valores inteiros e chame uma função que receba estes 2 valores
+de entrada e retorne o maior valor na primeira variável e o menor valor na segunda variável.
+Escreva o conteúdo das 2 variáveis na tela.
+
+******/
+int maior(int a, int b){
+int auxA, auxB;
+    if(b>a){
+       auxA=a;
+       auxB=b;
+       a=auxB;
+       b=auxA;
+    }
+    printf("\nA: %d" , a);
+    printf("\nB: %d" , b);
+return 0;
+}
+int main()
+{
+    int a, b, *p, *p2;
+        printf("Digite o valor de A: ");
+        scanf("%d" , &a);
+        printf("\nDigite o valor de B: ");
+        scanf("%d" , &b);
+    p=&a;
+    p2=&b;
+    maior(*p, *p2);
+return 0;
+}
