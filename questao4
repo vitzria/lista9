@@ -6,7 +6,7 @@ troque o seu conteúdo, ou seja, esta função é chamada passando duas variáve
 exemplo e, após a execução da função, A conterá o valor de B e B terá o valor de A.
 
 ******/
-int troca(a, b){
+int troca(int a, int b){
 int auxA, auxB;
     auxB=b;
     auxA=a;
