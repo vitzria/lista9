@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define pi 3.14
+/******
+ Implemente uma função que calcule a área da superfície e o volume de uma esfera de raio R. Essa
+função deve obedecer ao protótipo:
+void calc_esfera(float R, float *area, float *volume)
+A área da superfı́cie e o volume são dados, respectivamente, por:
+A = 4 * p * R 2
+V = 4/3 * p * R 3
+******/
+void calc_esfera(float r, float *area, float *volume){
+    *area= 4*pi*r*r;
+    *volume=(4*pi*r*r*r)/3;
+}
+int main()
+{
+    float r, area, volume;
+        printf("Digite o raio da esfera: ");
+        scanf("%f" , &r);
+        calc_esfera(r, &area, &volume);
+        printf("\nArea: %.2f" , area);
+        printf("\nVolume: %.2f" , volume);
+return 0;
+}
