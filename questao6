@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+/******
+Crie um programa que contenha um array de float contendo 10 elementos. Imprima o endereço de
+cada posição desse array.
+
+******/
+
+int main()
+{
+    float *array;
+    int i;
+        for(i=0;i<10;i++){
+            printf("\nDigite o valor %d: " , i+1);
+            scanf("%f" , &array[i]);
+        }
+        printf("\nENDERECOS");
+        for(i=0;i<10;i++){
+            printf("\n%2.f: %5.f" , *(array+i), array+i);
+        }
+return 0;
+}
