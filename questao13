@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+/******
+Crie uma função para somar dois arrays. Esta função deve receber dois arrays e retornar a soma
+em um terceiro array. Caso o tamanho do primeiro e segundo array seja diferente então a função
+retornará ZERO (0). Caso a função seja concluı́da com sucesso a mesma deve retornar o valor
+UM (1). Utilize aritmética de ponteiros para manipulação do array.
+******/
+int somaVetor(int *vetor1, int *vetor2, int *vetor3, int n1, int n2){
+int i, k;
+    if(n1!=n2){
+        printf("\nNao eh possivel somar os vetores");
+        exit(0);
+    }
+    else{
+        vetor3=(int*)malloc(n1*sizeof(int));
+            if(vetor3==NULL){
+                printf("\nMemoria insuficiente");
+                exit(1);
+            }
+        for(i=0;i<n2;i++){
+                for(k=0;k<n1;k++){
+                    vetor3[i]=vetor1[k]+vetor2[k];
+                }
+                printf("\n%d" , vetor3[i]);
+            }
+        }
+        return 1;
+}
+int main()
+{
+    int *vetor1, *vetor2, n1, n2, i, *vetor3;
+        printf("Digite a quant. de elementos do vetor 1: ");
+        scanf("%d" , &n1);
+        printf("\nDigite a quant. de elementos do vetor 2: ");
+        scanf("%d" , &n2);
+        printf("\nVETOR 1:");
+        vetor1=(int*)malloc(n1*sizeof(int));
+            if(vetor1==NULL){
+                printf("\nMemoria insuficiente");
+                exit(1);
+            }
+        for(i=0;i<n1;i++){
+            printf("\nDigite o valor %d: " , i+1);
+            scanf("%d" , (vetor1+i));
+        }
+        printf("\n");
+        vetor2=(int*)malloc(n2*sizeof(int));
+            if(vetor2==NULL){
+                printf("\nMemoria insuficiente");
+                exit(1);
+            }
+        printf("\nVETOR 2:");
+        for(i=0;i<n2;i++){
+            printf("\nDigite o valor %d: " , i+1);
+            scanf("%d" , (vetor2+i));
+        }
+        printf("\n");
+        printf("\nVETOR 3:");
+        somaVetor(vetor1, vetor2, vetor3, n1, n2);
+return 1;
+}
