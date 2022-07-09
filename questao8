@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+/******
+Elabore uma função que receba duas strings como parâmetros e verifique se a segunda string
+ocorre dentro da primeira. Use aritmética de ponteiros para acessar os caracteres das strings.
+******/
+int verifica(char *a, char *b){
+int i, j;
+    for(i=0,j=0;(*(a+i))!='\0';i++){
+        //enquanto as posicoes sao iguais
+        while((*(a+i))==(*(b+i))){
+            i++;
+            j++;
+            //segunda string acaba
+            if((*(b+j))=='\n'||(*(b+j))=='\0'){
+                printf("\nA segunda string esta contida na primeira");
+                return 0;
+            }
+            //segunda string diferente da primeira
+            else if((*(a+i))!=(*(b+j))){
+                printf("\nA segunda string nao esta contida na primeira");
+                return 0;
+            }
+        }
+    }
+}
+int main()
+{
+    char string1[100], string2[100];
+        printf("Digite a string 1: ");
+        fgets(string1, 100, stdin);
+        printf("\nDigite a string 2: ");
+        fgets(string2, 100, stdin);
+        verifica(string1, string2);
+return 0;
+}
