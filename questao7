@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+/******
+Crie um programa que contenha um array de inteiros contendo 5 elementos. Utilizando apenas
+aritmética de ponteiros, leia esse array do teclado e imprima o dobro de cada valor lido.
+******/
+
+int main()
+{
+    int *p, i;
+        for(i=0;i<5;i++){
+            printf("\nDigite o valor %d: " , i+1);
+            scanf("%d" , (p+i));
+        }
+        for(i=0;i<5;i++){
+            *(p+i)=(*(p+i))*2;
+            printf("\n%d" , *(p+i));
+        }
+return 0;
+}
