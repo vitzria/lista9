@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+/******
+Crie uma função que receba três parâmetros: um array, a quantidade de elementos e um valor do
+mesmo tipo do array. A função deverá preencher os elementos do array com esse valor. Não
+utilize índices para percorrer o array, apenas aritmética de ponteiros.
+******/
+int funcao(int n, int *array, int valor){
+int i;
+    for(i=0;i<n;i++){
+        *(array+i)=valor;
+    }
+return 0;
+}
+int main()
+{
+    int n, i, *array, valor;
+        printf("Digite a quantidade de elementos do array: ");
+        scanf("%d" , &n);
+        printf("\nDigite um valor: ");
+        scanf("%d" , &valor);
+        funcao(n, array, valor);
+        for(i=0;i<n;i++){
+            printf("\n%d" , *(array+i));
+        }
+
+return 0;
+}
