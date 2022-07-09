@@ -1,10 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+/******
+Escreva uma função que receba um array de inteiros V e os endereços de duas variáveis inteiras,
+min e max, e armazene nessas variáveis o valor mı́nimo e máximo do array. Escreva também uma
+função main que use essa função.
+******/
+#include <stdio.h>
+#include <stdlib.h>
 void funcao(int *vetor, int v, int *min, int *max){
     int i;
     int maior=*vetor;
     *max=maior;
-    for(int i=0;i<v;i++){
+    for(i=0;i<v;i++){
         if(*(vetor+i)>=maior){
             *max=*(vetor+i);
         }
@@ -22,7 +29,7 @@ int main()
     int i, v;
         printf("Digite a quantidade de numeros do vetor: ");
         scanf("%d" , &v);
-    int vetor [v];
+    int *vetor;
         for(i=0;i<v;i++){
         printf("\nDigite o valor %d: " , i+1);
         scanf("%d" , (vetor+i));
