@@ -13,7 +13,7 @@ apontadas por X1 e X2.
 int calculaRaiz(float a, float b, float c){
 float delta= pow(b,2)+(4*a*c);
 float raiz1= -b+sqrt(delta)/a*2;
-float raiz2= -b+sqrt(delta)/a*2;
+float raiz2= -b-sqrt(delta)/a*2;
 int count=0;
     if(delta<0){
         printf("\nNao existem raizes reais");
