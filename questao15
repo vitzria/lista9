@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+/*****
+Implemente uma função que calcule as raı́zes de uma equação do segundo grau do tipo
+Ax² + Bx + C = 0.
+Essa função deve obedecer ao seguinte protótipo:
+int raizes(float A,float B,float C,float * X1,float * X2);
+Essa função deve ter como valor de retorno o número de raı́zes reais e distintas da
+equação. Se existirem raı́zes reais, seus valores devem ser armazenados nas variáveis
+apontadas por X1 e X2.
+****/
+int calculaRaiz(float a, float b, float c){
+float delta= pow(b,2)+(4*a*c);
+float raiz1= -b+sqrt(delta)/a*2;
+float raiz2= -b+sqrt(delta)/a*2;
+int count=0;
+    if(delta<0){
+        printf("\nNao existem raizes reais");
+    }
+    if(delta==0){
+        printf("\nApenas uma raiz real: %f" , raiz1);
+        count=1;
+    }
+    if(delta>0){
+        printf("\nDuas raizes reais: %f e %f" , raiz1, raiz2);
+        count=2;
+    }
+return count;
+}
+int main()
+{
+    float a, b, c;
+        printf("Digite A: ");
+        scanf("%f" , &a);
+        printf("\nDigite B: ");
+        scanf("%f" , &b);
+        printf("\nDigite C: ");
+        scanf("%f" , &c);
+
+    return calculaRaiz(a, b, c);
+}
